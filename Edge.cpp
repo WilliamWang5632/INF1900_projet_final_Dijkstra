@@ -26,7 +26,6 @@ public:
     prints the weight as well as information of both connected nodes
     */
     void printInfo(){
-
         cout << "weight: " << weight << endl;
         cout << "Node 1: " << endl;
         cout << "\t id: " << adjacentNodes[0]->id << endl;

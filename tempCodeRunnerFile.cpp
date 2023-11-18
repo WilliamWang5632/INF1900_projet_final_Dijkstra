@@ -1,6 +1,3 @@
-#include <iostream>
-#include "Node.cpp"
-#include "Edge.cpp"
-#include "Graph.cpp"
-#include "Path.cpp"
-#include "createPlayground.cpp"
+   DijkstraResult dijkstraResult = computeDijkstra(playground, n14, n74);
+
+    dijkstraResult.print();

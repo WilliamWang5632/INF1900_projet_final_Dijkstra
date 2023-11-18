@@ -9,32 +9,20 @@ using namespace std;
 
 const int INF = 255; // very large number representing infinity
 
-struct DijkstraResult{
-    int* nodeArr; // array of integers representing the ids of the computed path
-    int size;     // number of nodes in path
-    int pathCost; // cost of path
-
-    // print struct attributes
-    void print(){
-        cout << "Fastest path from node " << nodeArr[0] << " to node " << nodeArr[size - 1] << ": " << endl;
-        for (int i = 0; i < size; i++){
-            cout << nodeArr[i] << " -> ";
-        }
-        cout << "end" << endl;
-        cout << "total cost: " << pathCost << endl;
-    }
-};
-
 /**
  *  this function computes the shortest path between a starting and ending node in a graph
     @param adjacencyMatrix 2D matrix representing adjacency between all nodes of a graph
     @param nNodes number of nodes inside of graph
     @param start starting node
     @param end ending node
-    @return struct of type DijkstraResult 
+    @return class Path representing the shortest path between two nodes
 */
 
-DijkstraResult computeDijkstra(int** adjacencyMatrix, int nNodes, Node& start, Node& end) {
+Path computeDijkstra(Graph playground, Node& start, Node& end) {
+
+    int** adjacencyMatrix = playground.adjacencyMatrix;
+    int nNodes = playground.nNodes;
+
     // Initialize distanceArr and visitedArr arrays
     int* distanceArr = new int[nNodes];
     bool* visitedArr = new bool[nNodes];
@@ -82,28 +70,31 @@ DijkstraResult computeDijkstra(int** adjacencyMatrix, int nNodes, Node& start, N
         current = previousNodes[current];
     }
 
-    int* finalNodeArray = new int[pathLength];
+    int* IdArray = new int[pathLength];
     int j = 0;
     for (int i = pathLength; i >= 0; i--){
         if (path[i] >= 0){
-            finalNodeArray[j] = path[i];
+            IdArray[j] = path[i];
             j++;
         }
     }
 
-    DijkstraResult dijkstraResult;
-    dijkstraResult.nodeArr = finalNodeArray;
-    dijkstraResult.size = pathLength;
-    dijkstraResult.pathCost = distanceArr[end.id];
+    Path minimumCostPath = Path(start, playground);
+    minimumCostPath.nNodes = pathLength;
+    minimumCostPath.totalCost = distanceArr[end.id];
+    minimumCostPath.current = end;
 
-    return dijkstraResult;
-
-    // free dynamically allocated memory
-    delete[] distanceArr;
-    delete[] visitedArr;
-    delete[] previousNodes;
-    delete[] path;
-    delete[] finalNodeArray;
-
+    Node finalNodeArray[pathLength];
+    for (int i = 0; i < pathLength; i++){
+        int id = IdArray[i];
+        Node newNode = Node(id);
+        finalNodeArray[i] = newNode;
+    }
+    
+    for (int i = 0; i < pathLength; i++){
+        minimumCostPath.nodeArray[i] = finalNodeArray[i];
+    }
+    
+    return minimumCostPath;
 }
 

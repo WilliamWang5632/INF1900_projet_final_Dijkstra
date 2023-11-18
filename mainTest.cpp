@@ -4,6 +4,7 @@
 #include "Graph.cpp"
 #include "Path.cpp"
 #include "createPlayground.cpp"
+#include "Dijkstra.cpp"
 
 //#include "memoryDebug.cpp"
 
@@ -27,6 +28,7 @@ using namespace std;
 
 */
 
+
 int main(){
 
     // important before testing
@@ -43,14 +45,14 @@ int main(){
     Node n33 = Node(3,3);
 
     Edge e11_21 = Edge(1, n11, n21);
-    Edge e21_31 = Edge(1, n21, n31);
-    Edge e12_22 = Edge(1, n12, n22);
-    Edge e22_32 = Edge(1, n22, n32);
-    Edge e23_33 = Edge(1, n23, n33);
-    Edge e11_12 = Edge(1, n11, n12);
-    Edge e12_13 = Edge(1, n12, n13);
-    Edge e22_23 = Edge(1, n22, n23);
-    Edge e31_32 = Edge(1, n31, n32);
+    Edge e21_31 = Edge(2, n21, n31);
+    Edge e12_22 = Edge(3, n12, n22);
+    Edge e22_32 = Edge(4, n22, n32);
+    Edge e23_33 = Edge(5, n23, n33);
+    Edge e11_12 = Edge(6, n11, n12);
+    Edge e12_13 = Edge(7, n12, n13);
+    Edge e22_23 = Edge(8, n22, n23);
+    Edge e31_32 = Edge(9, n31, n32);
 
     Graph r = Graph(9);
 
@@ -66,7 +68,9 @@ int main(){
 
     //r.displayMatrix();
     r.displayList();
-    r.removeNode(n22);
-    r.displayList();
+
+    Path minimumCostPath = computeDijkstra(r, n11, n33);
+    minimumCostPath.print(false);
+
 
 }

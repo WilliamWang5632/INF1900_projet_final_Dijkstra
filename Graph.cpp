@@ -93,6 +93,12 @@ public:
         }
     }
 
+    /**
+     * the rows and columns corresponding to the selected node
+     * in the adjacency matrix will be reset to -1 eliminating
+     * all connections to it
+     @param node node that will be removed from graph
+     */
     void removeNode(Node& node){
         int id = node.id;
         for (int i = 0; i < nNodes; i++){
@@ -101,17 +107,7 @@ public:
         }
     }
 
-
-    /**
-     * Graph destructor that deallocates the dynamically allocated memory
-     */ 
-    ~Graph(){
-        // for (int i = 0; i < nNodes; i++) {
-        //     delete[] adjacencyMatrix[i];
-        // }
-        // delete[] adjacencyMatrix;
-        // adjacencyMatrix = 0;
-    }
+    ~Graph(){}
 
     int nNodes;
     int nEdges;

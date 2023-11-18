@@ -46,78 +46,42 @@ public:
         nodeArray[0] = startingPoint;
     }
 
-    /**
-     * prints adjacent nodes to current node
-     */ 
-    void checkAdjacentNodes(){
-        int currentId = current.id;
-        cout << "Nodes adjacent to your current location: " << endl;
-        for (int i = 0; i < playground.nNodes; i++){
-            if (playground.adjacencyMatrix[i][currentId] > 0){
-                cout << i << endl;
+    // print the ids of all nodes in path in order as well as the totalCost
+    void print(bool isId){
+        if (isId){
+            cout << "The shortest path between node " << start.id << " and "<< current.id << " is: " << endl;
+
+            for (int i = 0; i < nNodes; i++){
+                cout << nodeArray[i].id << " -> ";
             }
         }
-    }
-
-    /**
-     * if next node is adjacent to current node, move to that node
-     * adds edge weight to totalCost
-     * adds node to array containing all nodes in path
-     @param node next node if it is valid
-     */ 
-    void moveTo(Node& node){
-        if (playground.adjacencyMatrix[node.id][current.id] > 0){
-            int weight = playground.adjacencyMatrix[node.id][current.id];
-            totalCost += weight;
-            current = node;
-            addNode(node);
-        }
         else{
-            cout << "selected node is not adjacent to current node!" << endl;
+            cout << "The shortest path between node ";
+            start.printCoordinates();
+            cout << " and ";
+            current.printCoordinates();
+            cout << " is: " << endl;
+
+            for (int i = 0; i < nNodes; i++){
+                nodeArray[i].printCoordinates();
+                cout << " -> ";
+            }
         }
-    }
 
-    // print the ids of all nodes in path in order as well as the totalCost
-    void showPath(){
-        cout << "path: ";
-
-        for (int i = 0; i < nNodes; i++){
-            cout << nodeArray[i].id << " => ";
-        }
-
-        cout << "fin" << endl;
+        cout << "end" << endl;
+        cout << endl;
         cout << "There are " << nNodes - 1 << " edges in this path" << endl;
+        cout << endl;
         cout << "Total cost of this path: " << totalCost << endl;
+        cout << endl;
     }
-
-    /**
-     * this method is equivalent to .push_back(node)
-     @param node node that will be added to nodeArray
-     */ 
-    void addNode(Node node) {
-        int newSize = nNodes + 1;
-        Node* newNodeArray = new Node[newSize];
-
-        for (int i = 0; i < nNodes; ++i) {
-            newNodeArray[i] = nodeArray[i];
-        }
-
-        newNodeArray[nNodes] = node;
-        delete[] nodeArray;
-
-        nodeArray = newNodeArray;
-        nNodes = newSize;
-    }
-
-    ~Path(){
-        delete[] nodeArray;
-    } 
+    
+    ~Path(){} 
 
     int nNodes;
-    Node* nodeArray;
-
     int totalCost;
     Node start;
     Node current;
+    Node* nodeArray;
     Graph playground;
 };
