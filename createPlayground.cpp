@@ -9,6 +9,13 @@
 
 using namespace std;
 
+const int NUM_NODES_IN_GRAPH = 28;
+
+const int BLACK = 1;
+const int YELLOW = 2;
+const int RED = 3;
+
+
 Graph createPlayground(){
     // instanciation of nodes
     // row 1
@@ -46,80 +53,74 @@ Graph createPlayground(){
     Node n54 = Node(5,4);
     Node n64 = Node(6,4);
     Node n74 = Node(7,4);
-
-    // weight of each color
-    
-    int black = 1;
-    int yellow = 2;
-    int red = 3;
     
     // instanciation of edges
     
     // instanciation of horizontal edges
     
     // row 1 horizontal edges
-    Edge e11_21 = Edge(black, n11, n21);
-    Edge e21_31 = Edge(black, n21, n31);
-    Edge e31_41 = Edge(black, n31, n41);
-    Edge e51_61 = Edge(black, n51, n61);
-    Edge e61_71 = Edge(black, n61, n71);
+    Edge e11_21 = Edge(BLACK, n11, n21);
+    Edge e21_31 = Edge(BLACK, n21, n31);
+    Edge e31_41 = Edge(BLACK, n31, n41);
+    Edge e51_61 = Edge(BLACK, n51, n61);
+    Edge e61_71 = Edge(BLACK, n61, n71);
     
     // row 2 horizontal edges
-    Edge e12_22 = Edge(red, n12, n22);
-    Edge e22_32 = Edge(black, n22, n32);
-    Edge e42_52 = Edge(yellow, n42, n52);
-    Edge e52_62 = Edge(black, n52, n62);
-    Edge e62_72 = Edge(black, n62, n72);
+    Edge e12_22 = Edge(RED, n12, n22);
+    Edge e22_32 = Edge(BLACK, n22, n32);
+    Edge e42_52 = Edge(YELLOW, n42, n52);
+    Edge e52_62 = Edge(BLACK, n52, n62);
+    Edge e62_72 = Edge(BLACK, n62, n72);
     
     // row 3 horizontal edges    
-    Edge e13_23 = Edge(yellow, n13, n23);
-    Edge e23_33 = Edge(black, n23, n33);
-    Edge e33_43 = Edge(black, n33, n43);
-    Edge e43_53 = Edge(red, n43, n53);
+    Edge e13_23 = Edge(YELLOW, n13, n23);
+    Edge e23_33 = Edge(BLACK, n23, n33);
+    Edge e33_43 = Edge(BLACK, n33, n43);
+    Edge e43_53 = Edge(RED, n43, n53);
     
     // row 4 horizontal edges    
-    Edge e14_24 = Edge(black, n14, n24);
-    Edge e24_34 = Edge(black, n24, n34);
-    Edge e44_54 = Edge(yellow, n44, n54);
-    Edge e54_64 = Edge(red, n54, n64);
-    Edge e64_74 = Edge(black, n64, n74);
+    Edge e14_24 = Edge(BLACK, n14, n24);
+    Edge e24_34 = Edge(BLACK, n24, n34);
+    Edge e44_54 = Edge(YELLOW, n44, n54);
+    Edge e54_64 = Edge(RED, n54, n64);
+    Edge e64_74 = Edge(BLACK, n64, n74);
     
     // instanciation of vertical edges
     
     // column 1 vertical edges
-    Edge e11_12 = Edge(black, n11, n12);
-    Edge e13_14 = Edge(red, n13, n14);
+    Edge e11_12 = Edge(BLACK, n11, n12);
+    Edge e13_14 = Edge(RED, n13, n14);
     
     // column 2 vertical edges
-    Edge e22_23 = Edge(black, n22, n23);
+    Edge e22_23 = Edge(BLACK, n22, n23);
     
     // column 3 vertical edges    
-    Edge e31_32 = Edge(black, n31, n32);
-    Edge e32_33 = Edge(red, n32, n33);
-    Edge e33_34 = Edge(black, n33, n34);
+    Edge e31_32 = Edge(BLACK, n31, n32);
+    Edge e32_33 = Edge(RED, n32, n33);
+    Edge e33_34 = Edge(BLACK, n33, n34);
     
     // column 4 vertical edges
-    Edge e41_42 = Edge(black, n41, n42);
-    Edge e43_44 = Edge(black, n43, n44);
+    Edge e41_42 = Edge(BLACK, n41, n42);
+    Edge e43_44 = Edge(BLACK, n43, n44);
     
     // column 5 vertical edges
-    Edge e52_53 = Edge(red, n52, n53);
-    Edge e53_54 = Edge(red, n53, n54);
+    Edge e52_53 = Edge(RED, n52, n53);
+    Edge e53_54 = Edge(RED, n53, n54);
     
     // column 6 vertical edges
-    Edge e61_62 = Edge(yellow, n61, n62);
-    Edge e62_63 = Edge(black, n62, n63);
-    Edge e63_64 = Edge(black, n63, n64);
+    Edge e61_62 = Edge(YELLOW, n61, n62);
+    Edge e62_63 = Edge(BLACK, n62, n63);
+    Edge e63_64 = Edge(BLACK, n63, n64);
     
     // column 7 vertical edges
-    Edge e71_72 = Edge(black, n71, n72);
-    Edge e72_73 = Edge(black, n72, n73);
-    Edge e73_74 = Edge(black, n73, n74);
+    Edge e71_72 = Edge(BLACK, n71, n72);
+    Edge e72_73 = Edge(BLACK, n72, n73);
+    Edge e73_74 = Edge(BLACK, n73, n74);
     
     
     
     //e12_13.printInfo();
-    Graph playground = Graph(28);
+    Graph playground = Graph(NUM_NODES_IN_GRAPH);
     
     PrintMemoryUsage();
     

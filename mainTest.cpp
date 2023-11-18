@@ -32,7 +32,7 @@ using namespace std;
 int main(){
 
     // important before testing
-    // change nodesPerRow in Node.cpp to 3
+    // change NODES_PER_ROW in Node.cpp to 3
 
     Node n11 = Node(1,1);
     Node n21 = Node(2,1);
